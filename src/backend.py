@@ -1,18 +1,5 @@
 #!/usr/bin/env python3
 
-def createImage(width,height,file):
-    encrypted=Image.new("RGB",(width,height),"black")
-
-    pixels=encrypted.load()
-
-    for i in range(width):
-        for j in range(height):
-            line=file.readline()
-            r,g,b=line.split()
-            pixels[i,j]=(int(r),int(g),int(b))
-
-    return encrypted
-
 def getPixels(image,file):
     width,height=image.size
 
@@ -28,14 +15,4 @@ def init(path,file):
 
     getPixels(original,file)
 
-def save(path):
-    file=open("src/output.txt","r")
-    
-    line=file.readline()
-    width,height=line.split()
-
-    encrypted=createImage(int(width),int(height),file)
-    encrypted.save(os.path.splitext(path)[0]+'.Encrypted'+os.path.splitext(path)[1],'png')
-
 from PIL import Image
-import os
